@@ -1,0 +1,168 @@
+React-facebook-clone
+Lesson 1(Introduction)
+Lesson 3(Setup)
+	Download Mongo DB compass
+		https://www.mongodb.com/products/compass
+		download link ==> https://downloads.mongodb.com/compass/mongodb-compass-1.36.1-darwin-x64.dmg?_ga=2.214970327.1708928973.1679003045-1826538172.1676590842&_gac=1.237749684.1676590842.EAIaIQobChMI_fK0xpub_QIVQ8qUCR2o0QN5EAAYASAAEgJWfvD_BwE
+	Cloudinary
+		used for managing media and images.
+		https:cloudinary.com
+	new google account
+		soulmater.com@gmail.com
+		 								==Pause
+
+Lesson 4(Visual code extensions)
+	Theme ==> from extension 
+		search “One Dark Pro” 
+	Prettier ==> find in extensions
+		need to set it up
+			make sure it is enabled in the settings
+		Settings > Formatting > select “Format on Save”
+		
+		Now we have to edit settings.json file 
+		How?
+		From the Prettier extension,
+			copy the Json Settings
+		Go back to the settings, and search for json.
+			Select “Edit in settings.json”
+	Copilot  —> (auto generates what you typing)
+	auto rename tag —>(if you edit the beginning tag it edits the end)
+	Bracket pair colorizer   —>(Helps you understand where you are with all the brackets)
+	env	—> Colorizes env files..
+	ES7	—> this is for snippets.
+	Emmet	—> for short hands and completion
+		Go to settings and search for emmet
+		under “Emmet: Include Languages”
+		add —>  "javascript": "javascriptreact",
+    				"vue-html": "html",
+    				"razor": "html",
+    				"plaintext": "jade"
+		This will update the settings.json file ==> ~/Library/Application Support/Code/User/settings.json
+												==== Pause
+Lesson 6(Setup front end)
+Lesson 8(Setup backend)
+	create backend folder.
+		run npm init 
+		we install express
+		also we need nodemon —> this restarts server on changes so we don’t need to stop and restart server
+			run with nodemon —> nodemon server.js
+					===> Pause 
+=============================================———————————————————————
+
+Lesson 10(Cors fully explained and setup with server) Cross Origin Resource Sharing
+	Cors is a node js package that adds a layer of security to your api/server and limit who can access it or 
+	installation ==>  npm i cors
+	
+	require and use 
+		cont cors = require(‘cors’)
+		==> app.use(cors())
+		Paused == >
+Lesson 12(Setup Routes)
+	Here we are creating routes folder and require route
+	import route file and have app.use(required_file)
+	Using readdirSync … We use this to read whats inside directory
+	import  ==> const { readdirSync } = require("fs");
+		then we can do readdirSync(‘./dirname’); this will return array of files.
+
+Lesson 15(Env)
+	We need to install the env package to use this.
+	installation ==> npm i dotenv  
+	Usage
+		const dotenv = require(“dotenv”)
+		dotenv.config();
+		Now all we need to do is use process.env to access the env.
+		e.g => const PORT = process.env.port
+Lesson 17 (Create Mongo DB account and set up)
+	we need to install MongoDB Compass . (on our computer)will make our life extremely easy.
+	We need to install mongodb and mongoose (this will help us work with the mongodb )
+		install ->  npm i mongodb mongoose  
+			run npm audit fix (to fix some changes) 
+	PAUSE ======>>>
+
+Lesson 19(Working with JSON and Explaining HTTP response)
+	To use Json we need to add to our main file(server.js)
+		const app = express(); // if not created.
+		app.use(express.json());
+	test site for json ==>  https://fakestoreapi.com/products
+
+SECTION 3: Authentication and send emails(Backend)
+Lesson 21(Set up User Model)
+	Using Mongoose.Schema to set up the model. use this to define the data.
+	===> Pause
+Lesson 22(Register and Validate data)
+	reg expression explained more ==> “\d” = any digitals, “.” = any character
+		parenthesis is for parts e.g email = .match(/^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,12})(\.[a-z]{2,12})?$/)
+	 using bcrypt for password hashing
+	Pause ==> 
+
+Lesson 23(Username Live validate)
+  Just a simple function to requery database to generate a unique user name.
+
+Lesson 24(Json web Token)
+	go to the official website ==> https://jwt.io 
+	we need to install at the backend ==> npm i jsonwebtoken 
+	was having issue with crypt ==> dyld: lazy symbol binding failed: Symbol not found: ____chkstk_darwin
+	solution here ==> https://github.com/nodegui/nodegui/issues/391
+	Pause
+Lesson 25( Setup Google OAuth 2.0 to Access Google APIs)
+	email —> soulmater@gmail.com
+	We need google cloud console. 
+	I will have to use mailtrap to test this.
+	Creating project in google console.cloud
+		==>https://console.cloud.google.com/projectselector2/apis/credentials?authuser=1&supportedpurview=project
+		project name = facebookmailing
+		==> we select project
+		go to menu on left .
+		select APIs & services > OAuth consent screen
+		click on “Create”
+		App name ==> facebookmailing
+		user support email ==> soulmater.com@gmail.com
+		Developer contact information ==> soulmater.com@gmail.com
+		save and continue…
+		seve and continue …
+		Test Users ==> add user ==> soulmater.com@gmail.com
+		save!!
+		Go back to menu >> credentials 
+		Click on +CREATE CREDENTIALS on the top
+			select => create OAuth client ID.
+			select application type = Web application
+			type in name ==> facebookmailer
+		Authorized javascript origins => our url => http://localhost:3000
+		Authorized redirect urls ==> https://developers.google.com/oauthplayground/
+		then create!! 
+		this will create a pop up window with credentials==> we copy the client id and client secret and save to our env file 
+ 		now we go back to the google developer play ground ==> https://developers.google.com/oauthplayground
+	Google developer play ground ==> https://developers.google.com/oauthplayground/
+		here we go to “options” and the right > select “use your own OAuth credentials
+		we add our credentials in the respective blocks(this is os that the oath don’t keep changing every often) and close
+		In other words, we needed to create our application and generate this so that our Oauth don’t keep changing.
+		we go to Authorize Api and add ==> https//mail.google.com
+		then follow instruction to the next stage ==> here we get the Authorization code: 
+		select “Exchange authorization code for tokens”
+		we save the Refresh token and Access Token in our .env file respectively.
+		PAUSE=====
+======================================================———————————————————————————
+		
+	Lesson 26( Finish Register and send email )
+		We need to install two packages for the mailer —> 
+		nodemailer ==> npm i nodemailer 
+		googleapis ==> npm i googleapis 
+		Creating temp email —> just create a simple “filename.html” 
+			we add extension to ‘visual code’ name ‘html-live server’
+			also we use the “HTML compressor” to compress the file to put on our application directory
+		Testing mail ==> google (temp mail) ==> https://temp-mail.org/en/ 
+			very good for testing…
+	
+			
+	
+
+
+		
+	
+	
+
+	
+	
+		
+		
+	
