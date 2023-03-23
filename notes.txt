@@ -152,6 +152,43 @@ Lesson 25( Setup Google OAuth 2.0 to Access Google APIs)
 			also we use the “HTML compressor” to compress the file to put on our application directory
 		Testing mail ==> google (temp mail) ==> https://temp-mail.org/en/ 
 			very good for testing…
+	Lesson 27(Activate email)
+	MONGOOSE DOC ==> https://mongoosejs.com/docs/queries.html
+Lesson 28 (Login Process)
+		PAUSE HERE
+========================================
+Section 4: Authentication frontend .
+Lesson 29(Lest set up real touter dom)
+	install the router ==> npm i react-router-dom 
+	
+	Remember the application we added on the extension ==> now in a file, we can just type “rfc” to create a real functional component.
+		gives us a snippet
+	Routes looks much different at this point. using element instead of component
+	<Routes>
+          <Route path="/login" element={<Login />} exact/>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/" element={<Home />} />
+       </Routes>
+
+Lesson 30(React Redux store)
+	Redux is a state management library 
+	Redux compromises of a store, actions(events containing payload, and type[], Reducer[performs operation on data)
+	To use redux we need to install the following
+		redux(the library) react-redux(the bridge), redux-devtools-extension(used on chrome to see the states
+		usage
+		import { CreateStore } from “redux”; import { Provider } from “react-native”
+		import { ComposewithDevTools } from “redux-devtools-extension”
+	Note to use the redux dev tool, you need to add the google extension.
+	PAUSE ====>
+Lesson 31( Login and Register page part 1)
+	here we are going to use Formik and yup
+		npm i formik yup 
+		usage ==> import {Formik, Form } from ‘formik’ 
+	lots of styling
+	PAUSE ===>>
+	
+Lesson 32(Login and Register Page part 2)
+	creating components separate from pages.
 	
 			
 	
