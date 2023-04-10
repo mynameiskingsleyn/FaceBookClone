@@ -1,5 +1,5 @@
 import './style.css';
-import {React} from 'react';
+import React from 'react';
 import { useField, ErrorMessage } from "formik";
 import { useMediaQuery } from "react-responsive";
 

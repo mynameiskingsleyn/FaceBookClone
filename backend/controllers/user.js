@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
-const { sendVerificationEmail } = require("../helpers/mailer");
+const { sendVerificationEmail } = require("../helpers/mailTrap");
 const { PASSWORD_HASH_NUM } = process.env;
 const jwt = require("jsonwebtoken");
 //const bcrypt = require("bcrypt-nodejs");
@@ -97,8 +97,7 @@ exports.register = async (req, res) => {
       tokenTime
     );
     const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
-    console.log(emailVerificationToken);
-    sendVerificationEmail(user.email, user.first_name, url);
+    const sendEmail = await sendVerificationEmail(user.email, user.first_name, url);
     const token = generateToken({ id: user._id.toString() }, logInTokenTime);
     res.send({
       id: user._id,
@@ -165,7 +164,6 @@ exports.login = async (req, res) => {
       last_name: user.last_name,
       token: token,
       verified: user.verified,
-      message: "Logged in succesfully",
     });
     
 

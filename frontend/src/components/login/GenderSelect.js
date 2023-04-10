@@ -1,8 +1,9 @@
 
+import React from "react";
 import { useMediaViews } from '../../utils/customHooks/mediaViews';
 export default function GenderSelect ({ handleInputChange, genderError }) {
 
-    const [mobileView, tabletView, desktopView] = useMediaViews();
+    const [ desktopView ] = useMediaViews();
     return (
         <div className="reg_col">
             <div className="reg_line_header">

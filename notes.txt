@@ -1,5 +1,10 @@
 React-facebook-clone
 Lesson 1(Introduction)
+ mail trap ==> https://mailtrap.io/inboxes/265473/messages/3383726384
+	setting up ==> https://mailtrap.io/blog/sending-emails-with-nodemailer/
+Mongoose document ==> https://mongoosejs.com/docs/queries.html
+cloud image ==> https://cloudinary.com/
+Redux toolkit ==> https://redux-toolkit.js.org/tutorials/quick-start
 Lesson 3(Setup)
 	Download Mongo DB compass
 		https://www.mongodb.com/products/compass
@@ -143,7 +148,7 @@ Lesson 25( Setup Google OAuth 2.0 to Access Google APIs)
 		PAUSE=====
 ======================================================———————————————————————————
 		
-	Lesson 26( Finish Register and send email )
+Lesson 26( Finish Register and send email )
 		We need to install two packages for the mailer —> 
 		nodemailer ==> npm i nodemailer 
 		googleapis ==> npm i googleapis 
@@ -152,7 +157,8 @@ Lesson 25( Setup Google OAuth 2.0 to Access Google APIs)
 			also we use the “HTML compressor” to compress the file to put on our application directory
 		Testing mail ==> google (temp mail) ==> https://temp-mail.org/en/ 
 			very good for testing…
-	Lesson 27(Activate email)
+		PAUSE ==>
+Lesson 27(Activate email)
 	MONGOOSE DOC ==> https://mongoosejs.com/docs/queries.html
 Lesson 28 (Login Process)
 		PAUSE HERE
@@ -186,9 +192,115 @@ Lesson 31( Login and Register page part 1)
 		usage ==> import {Formik, Form } from ‘formik’ 
 	lots of styling
 	PAUSE ===>>
-	
+============================================================	
 Lesson 32(Login and Register Page part 2)
-	creating components separate from pages.
+	creating components separate from pages. easy! good structure.
+	Introduced Formik “useField” hook —> this is a custom React hook that will automagically help you hok up inputs to Formic.
+
+	Formik needs “EnableReinitialize” to be able to be reinitialized.
+
+	PAUSE here /Start here/
+=================================================================================
+Lesson 33(Login and Register Part 3)
+	creating triangle
+	error pointing down.
+	.error_arrow_top {
+    		border-top: 10px solid #b94a48;
+   		 border-right: 10px solid transparent;
+    		border-left: 10px solid transparent;
+    		position: absolute;
+    		bottom: -10px;
+  		}
+	arrow pointing up
+	 .error_arrow_bottom {
+    		border-bottom: 10px solid #b94a48;
+    		border-right: 10px solid transparent;
+    		border-left: 10px solid transparent;
+    		position: absolute;
+    		top: -10px;
+  		}
+Lesson 34(Login and Register page part 4)(responsiveness)
+	@media(max-width: 850) {
+         }
+	introduced the package ‘react responsive’ makes it easier to work with responsively. 
+	installation ==> npm i react-responsive
+	usage ==> import { useMediaQuery } from "react-responsive";
+	then use it to create a value
+	const desktopView = useMediaQuery({query:"(min-width: 850)”,});
+
+	this will return true if the screen size matches the query ==> min-width: 850. 
+	PAUSE =====>
+
+——————————————————————————————————————————————————————————
+
+Lesson 35(Login and Registration part 5)
+	just more styling
+		-webkit-filter: invert(40%);  ( make it show less or more. pretty cool to try)
+PAUSE /START HERE/
+======================———————————————— ——
+Lessong 36(Refactored )
+
+Lesson 37(Register Form)
+	adding inputs and styling
+PAUSE ===> START HERE
+===================———————————————————————————
+Lesson 38(working with dates for birthday)
+  working with new Date().
+PAUSE ==> 
+/START HERE/
+==————————————————————————————————————————
+Lesson 39(Register Form Validation)
+	Just using Yup for validation.
+	Pause
+	Start here ==> 
+=================================================================——————————
+Lesson 40(Register form error handling)
+	just stying 
+	Pause here
+	/ Start Here /
+======================================================================————————
+Lesson 41(Finish register error handling)
+	more styling.
+Pause here—>
+—————————————————————————————————————————————————
+Lesson 42(Register Submit)
+	Introduction of react spinners 
+	link => npmjs.com/package/react-spinners
+	install ==> npm install —save react-spinners
+	samples => https://www.davidhu.io/react-spinners/
+	for requests we need axios.. so we need to install it
+
+	Install axis ==> npm i axios 
+	encountered problem with  ../../public  for icons
+	helper site ==> https://stackoverflow.com/questions/44114436/the-create-react-app-imports-restriction-outside-of-src-directory
+
+	Introduced cookie ==> js-cookie
+		install ==> npm i js-cookie
+
+	Introduced —> useNavigate from “react-router-dom”
+		import  {useNavigate} from “react-router-dom”
+
+	PAUSE Here —>
+—————————————————————————————————————————————————
+Lesson 43 (Login Submit)
+	just utilize Registration and edit.
+	
+
+
+	
+	
+
+
+
+
+
+
+
+
+	
+
+	
+
 	
 			
 	

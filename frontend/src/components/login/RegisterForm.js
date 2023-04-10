@@ -2,10 +2,14 @@ import React, {useState} from 'react';
 import { Formik, Form } from "formik";
 import * as Yup from 'yup';
 import RegisterInput from "../inputs/registerInput";
-import {signUpAge, monthEnum } from "../../utils/const";
+import {signUpAge } from "../../utils/const";
 import DateOfBirthSelect from "./DateOfBirthSelect";
 import GenderSelect from "./GenderSelect";
 import DotLoader from  "react-spinners/DotLoader";
+import axios from "axios";
+import {useDispatch} from 'react-redux';
+import Cookies from "js-cookie";
+import {useNavigate } from "react-router-dom";
 
 
 const userInfo = {
@@ -19,8 +23,10 @@ const userInfo = {
     gender: "",
   };
 
-export default function RegisterForm() {
-    
+
+export default function RegisterForm({setVisible}) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [user, setUser] = useState(userInfo);
 
     const {
@@ -32,8 +38,6 @@ export default function RegisterForm() {
         const {name, value} = e.target; 
         setUser({ ...user, [name]: value});
     }
-
-    
    
     const registrationValidation = Yup.object({
         first_name: Yup.string().required('first name is required')
@@ -59,16 +63,45 @@ export default function RegisterForm() {
 
     const registerSubmit = async () => {
         try {
-
+            const { data } =  await axios.post(`${process.env.REACT_APP_BACKEND_URL}/register`, {
+                first_name,
+                last_name,
+                email,
+                password,
+                bYear,
+                bMonth,
+                bDay,
+                gender,
+            });
+            setError("");
+            if (data) {
+                setSuccess(data.message);
+                const { message, ...rest} = data;
+                setTimeout(() => {
+                   dispatch({
+                    type: "LOGIN",
+                    payload: rest
+                   });
+                   Cookies.set('user', JSON.stringify(rest));
+                   navigate("/");
+                }, 5000);
+            } 
         } catch (error) {
-
+            let message = error.message;
+            if (error.response) {
+                message = error.response.data.message;
+            }
+            setLoading(false);
+            setSuccess("");
+            setError(message);
         }
     }
   return (
     <div className="blur"> 
         <div className="register">
             <div className="register_header">
-                <i className="exit_icon"></i>
+                <i className="exit_icon"
+                onClick = {() => setVisible( (prevState) => !prevState )}></i>
                 <span>Sign Up</span>
                 <span>it's quick and easy</span>
             </div>
@@ -87,14 +120,16 @@ export default function RegisterForm() {
                 validationSchema = {registrationValidation}
                 onSubmit = { () => {
                     
-                    
+                    let hasErrors = false;
                     let currentDate = new Date();
                     let pickedDate = new Date(bYear, bMonth-1, bDay);
                     let minAge = new Date(1970 + signUpAge.min, 0, 1);
                     let maxAge = new Date(1970 + signUpAge.max, 0, 1);
                     if(currentDate - pickedDate < minAge ) {
+                        hasErrors = true;
                         setDateError(`It looks like you entered a wrong date!! must be atleast ${signUpAge.min} to use app`);
                     }else if(currentDate - pickedDate > maxAge ) {
+                        hasErrors = true;
                         setDateError(`It looks like you entered a wrong date!! must be less than ${signUpAge.max + 1} to use app`);
                     } else{
                         setDateError("");
@@ -104,10 +139,11 @@ export default function RegisterForm() {
                         setGenderError(
                             "Please choose a gender. You can change who can see this later."
                           );
+                          hasErrors = true;
                     } else {
                         setGenderError("");
                     }
-                    if (dateError.length < 1 && genderError.length < 1) {
+                    if (!hasErrors) {
                         registerSubmit();
                     }
                     console.log(pickedDate);

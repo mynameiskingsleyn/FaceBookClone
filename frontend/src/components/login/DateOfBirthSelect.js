@@ -1,8 +1,8 @@
-
+import React from 'react';
 import { monthEnum } from "../../utils/const";
 import { useMediaViews } from '../../utils/customHooks/mediaViews';
 export default function DateOfBirthSelect(props){
-    const {bYear, bMonth, bDays, handleInputChange, dateError } = props;
+    const {bYear, bMonth, handleInputChange, dateError } = props;
     const yearTemp = new Date().getFullYear();
     const years = Array.from(new Array(108),(val, index)=> yearTemp - index);
     const months = Array.from(Array(12), (val, index) => 1 + index );
@@ -12,7 +12,7 @@ export default function DateOfBirthSelect(props){
     const getDays = () => {
         return new Date(bYear, bMonth, 0).getDate();
     };
-    const [mobileView, tabletView, desktopView] = useMediaViews();
+    const [ desktopView ] = useMediaViews();
     const days = Array.from(new Array(getDays()), (val, index) => 1 + index);
     return(
         <div className="reg_col">

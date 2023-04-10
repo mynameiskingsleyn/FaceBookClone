@@ -1,16 +1,12 @@
 import './style.css';
-import {React} from 'react';
+import React from 'react';
 import { useField, ErrorMessage } from "formik";
-import { useMediaQuery } from "react-responsive";
 import { useMediaViews } from '../../../utils/customHooks/mediaViews';
 
 export default function RegisterInput({ placeholder, type, bottom, ...props }) {
     const [field, meta] = useField(props);
     
     const [mobileView, tabletView, desktopView] = useMediaViews();
-    const view3 = useMediaQuery({
-        query: "(min-width: 850px)",
-    });
     const text1 = desktopView && field.name === "first_name";
     const text2 = desktopView && field.name === "last_name";
     return (
